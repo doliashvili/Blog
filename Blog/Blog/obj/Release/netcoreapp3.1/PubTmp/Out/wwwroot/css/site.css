@@ -1,0 +1,76 @@
+﻿body {
+    margin:0px;
+    padding:0px;
+    background-color:#b6d3f7;
+}
+
+a{
+    color:white;
+    text-decoration:none;
+}
+
+
+a:hover{
+    text-decoration:underline;
+}
+
+
+nav{
+    background-color:#14262b;
+    height:50px;
+    width:100%;
+    text-align:center;
+}
+
+nav a{
+    display:inline-block;
+    padding:15px;
+}
+
+.main-img {
+    position:relative;
+    height:500px;
+    background-image:url('../content/static/508178-blog-book-glasses.jpg');
+    background-position:center;
+    background-size:cover;
+}
+
+.title {
+    position: absolute;
+    color: white;
+    font-size: 40px;
+    left: 50%;
+    transform:translate(-50%);
+    top:35%;
+    text-shadow: 0 0 8px black;
+}
+
+.container{
+    max-width:800px;
+    width:100%;
+    margin:auto;
+}
+
+.post {
+    margin: 5px;
+    margin-top:20px;
+    position: relative;
+    width: 100%;
+    display: flex;
+    height: 400px;
+    box-shadow: 0 0 8px black;
+}
+
+.post img{
+    width:100%;
+    object-fit:cover;
+}
+
+.post-body{
+    margin:-5px 5px 0px;
+    padding:20px 5px;
+    background-color:white;
+    font-size:20px;
+    border-bottom-left-radius:7px;
+    border-bottom-right-radius:7px;
+}

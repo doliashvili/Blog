@@ -1,0 +1,23 @@
+﻿@model RegisterViewModel
+
+
+<form asp-controller="Auth" asp-action="Register"  method="post">
+    <div class="sign-in-form">
+        <div>
+            <label>Email</label>
+            <input asp-for="Email" />
+            <span asp-validation-for="Email"></span>
+        </div>
+        <div>
+            <label>Password</label>
+            <input asp-for="Password"/>
+            <span asp-validation-for="Password"></span>
+        </div>
+        <div>
+            <label>Confrim Password</label>
+            <input asp-for="ConfrimPassword" />
+            <span asp-validation-for="ConfrimPassword"></span>
+        </div>
+        <input type="submit" value="Sign Up" />
+    </div>
+</form>

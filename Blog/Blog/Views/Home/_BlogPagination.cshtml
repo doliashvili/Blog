@@ -1,0 +1,30 @@
+﻿@model IndexViewModel
+
+
+<div class="pages">
+    @if (Model.PageNumber > 1)
+    {
+        <a asp-action="Index" asp-controller="Home" asp-route-category="@Model.Category"
+           asp-route-pageNumber="@(Model.PageNumber -1)">&larr;</a>
+    }
+    @foreach (var p in Model.Pages)
+    {
+        if (p == -1)
+        {
+            <span class="three-dots">
+                ...
+            </span>
+        }
+        else
+        {
+            <a class="@(p==Model.PageNumber ?  "active" : "")" asp-action="Index" asp-controller="Home" asp-route-category="@Model.Category"
+               asp-route-pageNumber="@p">@p</a>
+        }
+    }
+
+    @if (Model.CanGoNext)
+    {
+        <a asp-action="Index" asp-controller="Home" asp-route-category="@Model.Category"
+           asp-route-pageNumber="@(Model.PageNumber +1)">&rarr;</a>
+    }
+</div>

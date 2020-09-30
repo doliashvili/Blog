@@ -1,0 +1,59 @@
+﻿@model Post
+
+@{
+    ViewBag.Title = Model.Title;
+    ViewBag.Description = Model.Description;
+    ViewBag.Keywords = $"{Model.Tags?.Replace(',', ' ')} {Model.Category}";
+}
+
+<div class="container">
+    <div class="post">
+        @if (!string.IsNullOrEmpty(Model.Image))
+        {
+            var base_path = Context.Request.PathBase;
+            var image_path = $"{base_path}/Image/{Model.Image}";
+            <img src="@image_path" width="500" />
+            <span class="title"> @Model.Title</span>
+        }
+    </div>
+
+    <div class="post-body">
+        @Html.Raw(Model.Body)
+    </div>
+    <div>
+        @if (User.Identity.IsAuthenticated)
+        {
+            await Html.RenderPartialAsync("_MainComment", new CommentViewModel { PostId = Model.Id, MainCommentId = 0 });
+        }
+
+        @{
+            foreach (var mainComment in Model.MainComments)
+            {
+                <p style="font-size:18px; color:#030303">
+                    @mainComment.Message  --  @mainComment.Created
+                </p>
+
+                <div style="margin-left:10px">
+                    <h5>Sub comments</h5>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        await Html.RenderPartialAsync("_MainComment", new CommentViewModel { PostId = Model.Id, MainCommentId = mainComment.Id });
+                    }
+                    @foreach (var subComment in mainComment.SubComments)
+                    {
+                        <p style="font-size:14px;  color:#222020">
+                            @subComment.Message  --  @subComment.Created
+                        </p>
+                    }
+                </div>
+            }
+        }
+        @if (!User.Identity.IsAuthenticated)
+        {
+            <div>
+                <a asp-action="Login" asp-controller="Auth"> if you want comment please login</a>
+            </div>
+        }
+
+    </div>
+</div>
